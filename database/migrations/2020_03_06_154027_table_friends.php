@@ -15,14 +15,10 @@ class TableFriends extends Migration
     {
         Schema::create('friends', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->biginteger('user1_id')->unsigned();
-            $table->foreign('user1_id')->references('id')->on('users');
-            $table->biginteger('user2_id')->unsigned();
-            $table->foreign('user2_id')->references('id')->on('users');
-
-      $table->boolean('request');
-      $table->boolean('add');
-      $table->boolean('block');
+            $table->biginteger('user_1')->unsigned();
+            $table->foreign('user_1')->references('id')->on('users');
+            $table->biginteger('user_2')->unsigned();
+            $table->foreign('user_2')->references('id')->on('users');
             $table->timestamps();
         });
     }
