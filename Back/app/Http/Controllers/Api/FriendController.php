@@ -9,7 +9,7 @@ use App\Addrequest;
 class FriendController extends Controller
 {
     use ApiResponseTrait;
-
+// accept add 
     public function added(Request $request)
     {
     $validator = Validator::make($request->all(),[
@@ -22,8 +22,8 @@ class FriendController extends Controller
            return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
        }
         $NewRequest = new Friend();
-        $NewRequest->user_1=$request->to_id;
-        $NewRequest->user_2=$request->from_id;
+        $NewRequest->user_2=$request->to_id;
+        $NewRequest->user_1=$request->from_id;
         if($NewRequest->save())
         {
             Addrequest::where([
@@ -34,4 +34,6 @@ class FriendController extends Controller
         }
         return $this->apiResponse(null,404);
     }
+
+
 }
