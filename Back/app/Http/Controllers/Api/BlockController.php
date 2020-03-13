@@ -30,6 +30,7 @@ class BlockController extends Controller
         return $this->apiResponse(null,404);
     }
 
+    ///////////////////// cancel block////////////////////
     public function cancel(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -55,6 +56,7 @@ class BlockController extends Controller
         return $this->apiResponse(null,404);
 
     }
+//////////////////////////check block /////////////////////////////////
 
     public function check_block($user_1, $user_2)
     {
