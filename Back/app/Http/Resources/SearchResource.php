@@ -18,6 +18,7 @@ class SearchResource extends JsonResource
             'id'=>$this->id,
           'username'=>$this->username, 
           'img'=>$this->img,
+          'bio'=>$this->bio,
         ];
     }
 }
