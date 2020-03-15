@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Block;
+use DB;
 
 class BlockController extends Controller
 {
@@ -25,6 +26,11 @@ class BlockController extends Controller
             'to_user' => $request->to_id]
         ]))
         {
+            DB::table('friends')->where([['user_1', '=', $request->from_id],['user_2','=',$request->to_id]])
+            ->orwhere([['user_2', '=', $request->from_id],['user_1','=',$request->to_id]])->delete(); 
+
+            DB::table('addrequests')->where([['from_user', '=', $request->from_id],['to_user','=',$request->to_id]])
+            ->orwhere([['to_user', '=', $request->from_id],['from_user','=',$request->to_id]])->delete();     
             return $this->apiResponse(null);
         }
         return $this->apiResponse(null,404);
