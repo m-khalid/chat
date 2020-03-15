@@ -15,10 +15,11 @@ class ListAcceptedResource extends JsonResource
     public function toArray($request)
     {
         return [
-           
-            'username'=>$this->'username',
-          //  'img'=>$this->img,
-            //'since'=>$this->created_at,
+           'id'=>$this->user_2,
+           'username'=>$this->username,
+           'img'=>$this->img,
+           'time'=>$this->created_at,
+            
         ];
     }
 }
