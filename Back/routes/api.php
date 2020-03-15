@@ -26,4 +26,6 @@ Route::post('search','SearchController@search');
 Route::post('img','ImgController@setimg');
 Route::post('block','BlockController@block');
 Route::post('cancelblock','BlockController@cancel');
-Route::post('acceptedadd','FriendController@added');
+Route::post('acceptedrequest','FriendController@added');
+Route::post('listaccepted','FriendController@list_accepted');
+Route::post('countaccepted','FriendController@count_accept');
