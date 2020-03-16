@@ -29,3 +29,5 @@ Route::post('cancelblock','BlockController@cancel');
 Route::post('acceptedrequest','FriendController@added');
 Route::post('listaccepted','FriendController@list_accepted');
 Route::post('countaccepted','FriendController@count_accept');
+Route::post('countrequest','RequestController@count_requet');
+Route::post('listrequest','RequestController@list');

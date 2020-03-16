@@ -55,13 +55,13 @@ class FriendController extends Controller
                 ->join('friends', 'users.id', '=', 'friends.user_2')->where('user_1',$request->id)
                 ->select('friends.user_2','users.img','friends.created_at','users.username')->get();
                  Friend::where('user_1',$request->id)->update(['status'=> 0]);
-         
+                $users=null;
                 foreach ($data as $user)
                 {
                     $user->img=asset("storage/$user->img");                   
-                    $datas[]=new ListAcceptedResource($user);
+                    $users[]=new ListAcceptedResource($user);
                 } 
-                 return $this->apiResponse($datas);
+                 return $this->apiResponse($users);
     }
 
     public function count_accept(Request $request)
