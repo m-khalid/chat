@@ -52,9 +52,9 @@ class FriendController extends Controller
                return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
            }
                  $data= DB::table('users')
-                ->join('friends', 'users.id', '=', 'friends.user_2')->where('user_1',$request->id)
-                ->select('friends.user_2','users.img','friends.created_at','users.username')->get();
-                 Friend::where('user_1',$request->id)->update(['status'=> 0]);
+                ->join('friends', 'users.id', '=', 'friends.user_1')->where('user_2',$request->id)
+                ->select('friends.user_1','users.img','friends.created_at','users.username')->get();
+                 Friend::where('user_2',$request->id)->update(['status'=> 0]);
                 $users=null;
                 foreach ($data as $user)
                 {
@@ -64,6 +64,7 @@ class FriendController extends Controller
                  return $this->apiResponse($users);
     }
 
+    ////// count of accepted request//////////
     public function count_accept(Request $request)
     {
         
@@ -74,7 +75,7 @@ class FriendController extends Controller
            {      
                return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
            }
-         $data['count']= Friend::where([['user_1', $request->id],['status',1]])->count('status');
+         $data['count']= Friend::where([['user_2', $request->id],['status',1]])->count('status');
         return   $this->apiResponse($data);
     }
 

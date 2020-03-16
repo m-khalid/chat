@@ -58,7 +58,7 @@ class RequestController extends Controller
             $data= DB::table('users')
             ->join('addrequests', 'users.id', '=', 'addrequests.from_user')->where('to_user',$request->id)
             ->select('addrequests.from_user','users.img','addrequests.created_at','users.username')->get();
-           // Friend::where('user_1',$request->id)->update(['status'=> 0]);
+             Addrequest::where('to_user',$request->id)->update(['status'=> 0]);
            $users=null;
             foreach ($data as $user)
                 {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\ListBlockRecource;
 use App\Block;
 use DB;
 
@@ -62,23 +63,28 @@ class BlockController extends Controller
         return $this->apiResponse(null,404);
 
     }
-//////////////////////////check block /////////////////////////////////
+////////////////////////// list block /////////////////////////////////li
 
-    public function check_block($user_1, $user_2)
+    public function list(Request $request)
     {
-    
-      $check=Block::where([
-            ['from_user' , $user_1],
-            ['to_user' , $user_2],
-        ])->get();
-      
-        if($check->isNotEmpty())
-        {
-            return "true";
-        }
-        else
-        {
-            return "false";
-        }
-    }
+        $validator = Validator::make($request->all(),[
+            'id'  => 'required|integer',
+         ]);
+         if ($validator->fails()) 
+         {      
+             return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
+         }  
+        
+         $data= DB::table('users')
+            ->join('blocks', 'users.id', '=', 'blocks.to_user')->where('from_user',$request->id)
+            ->select('blocks.to_user','users.img','users.username')->get();
+            $users=null;
+            foreach ($data as $user)
+            {
+                $user->img=asset("storage/$user->img");                   
+                $users[]= new ListBlockRecource($user);
+            } 
+            return $this->apiResponse($users);
+    } 
+
 }

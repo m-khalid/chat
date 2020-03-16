@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ListAcceptedResource extends JsonResource
+class ListBlockRecource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,9 @@ class ListAcceptedResource extends JsonResource
     public function toArray($request)
     {
         return [
-           'id'=>$this->user_1,
-           'username'=>$this->username,
-           'img'=>$this->img,
-           'time'=>$this->created_at,
-            
+            'id'=>$this->to_user,
+            'username'=>$this->username,
+            'img'=>$this->img,
         ];
     }
 }
