@@ -23,11 +23,19 @@ class UserController extends Controller
            unset($request['password_confirmation']); 
            $password=$request->password;
            $request['password']=md5($request['password']);
+           $user = new User;
+           $user->username=$request->username;
+           $user->email=$request->email;
+           $user->password=$request->password;
+           $user->age=$request->age;
+           $user->bio=$request->bio;
            if ($validator->fails()) 
             {      
                 return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
             }
-            else if(DB::table('users')->insert($request->all())){
+         
+            else if($user->save())
+            {
               $user_data=$this->Account($request->username,$password);
             if($user_data)
             {
@@ -35,9 +43,7 @@ class UserController extends Controller
                 return $this->apiResponse($data);
             }
         }
-
              return $this->apiResponse(null,'404');
-     
     }
     public function get(Request $request)
     {
