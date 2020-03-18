@@ -10,7 +10,9 @@
     <li class="col"></li>
     <li class="nav-item col mainli">
       <div class="navbarDropdown">
-        <span>menu <font-awesome-icon :icon="['fas', 'chevron-circle-down']" /></span>
+        <span>menu 
+          <!-- <font-awesome-icon :icon="['fas', 'chevron-circle-down']" /> -->
+        </span>
 
         <div class="navbarDropdownContent">
           <ul>

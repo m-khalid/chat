@@ -1,4 +1,4 @@
-# my_first_project
+# chat_app
 
 ## Project setup
 ```
