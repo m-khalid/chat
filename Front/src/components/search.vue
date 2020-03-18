@@ -1,6 +1,6 @@
 <template>
 <!--Not friend card-->
-
+<div>
   <div class="card mb-3" style="max-width:600px;">
     <div style="  border: 1px solid;
      padding: 10px;
@@ -34,7 +34,7 @@
      border-radius:5px;">
 <div class="row no-gutters">
   <div class="col-md-4">
-    <img src="F:\picture\Screenshots\thunder.jpg" class="card-img" alt="..." style="border-radius: 100%;">
+    <img src="#" class="card-img" alt="..." style="border-radius: 100%;">
   </div>
   <div class="col-md-8">
     <div class="card-body">
@@ -50,12 +50,14 @@
 </div>
 </div>
 </div>
+</div>
 </template>
 
 <script>
+/*
 $(document).ready(function(){
 $('[data-toggle="popover"]').popover();
-                                });
+                                });*/
 </script>
 
 <style >

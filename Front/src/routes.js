@@ -3,7 +3,7 @@ import search from './components/search.vue'
 import setting from './components/setting.vue'
 import viewFriends from './components/viewFriends.vue'
 import viewMessages from './components/viewMessages.vue'
-import mlogin from './components/mlogin.vue'
+import mlogin from './components/authentication/mlogin.vue'
 
 
 export default[
@@ -14,4 +14,5 @@ export default[
   {path:'/viewFriends', component: viewFriends},
   {path:'/about', component: about},
   {path:'/login', component: mlogin}
+
 ]
