@@ -23,7 +23,7 @@ Route::post('viewprofile','UserController@display');
 Route::post('changepassword','UserController@changepassword');
 Route::post('request','RequestController@request');
 Route::post('search','SearchController@search');
-Route::post('img','ImgController@setimg');
+Route::post('img','UserController@setimg');
 Route::post('block','BlockController@block');
 Route::post('cancelblock','BlockController@cancel');
 Route::post('listblock','BlockController@list');
