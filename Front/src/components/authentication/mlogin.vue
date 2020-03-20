@@ -4,25 +4,45 @@
       <div class="col  align-self-center">
         <div class="row justify-content-center"><h1>login</h1></div>
         <div class="row justify-content-center" id="form-contatiner">
-            <form class="" action="index.html" method="post">
+            <form  v-on:submit.prevent="login()">
               <div class="row">
-                <input type="text" class="inputfield"  id="userNameInput" placeholder="E-mail or User name" value="">
+                <input type="text" class="inputfield"  id="userNameInput" placeholder="E-mail or User name" v-model="username" value="">
               </div>
               <div class="row">
-                <input type="password" class="inputfield"  id="passwordInput" placeholder="Password" name="" value="">
+                <input type="password" class="inputfield"  id="passwordInput" placeholder="Password" v-model="password" value="">
               </div>
               <div class="row justify-content-center">
-                <input id="submitbtn" type="submit" name="" value="Enter">
+                <input id="submitbtn" type="submit"  value="Enter">
               </div>
             </form>
           </div>
-          <div class="row justify-content-center"> <a href="#">don't have an account?</a> </div>
+          <div class="row justify-content-center"> <router-link to='/register'>don't have an account?</router-link> </div>
         </div>
       </div>
   </div>
 </template>
 
 <script>
+export default{
+    data: ()=>({
+      username: '',
+      password: ''
+    }),
+    methods: {
+        login() {
+            console.log('i have been clicked');
+            this.$store.dispatch('login', {
+                useraccount: this.username,
+                password: this.password
+            }).then(()=>{
+              console.log('he5aaaaaaaa 43al');
+            }).catch((error)=>{
+              console.log('la2 yabaaa: '+error);
+            })
+            
+        }
+    }
+}
 
 </script>
 

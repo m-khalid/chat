@@ -4,6 +4,7 @@ import setting from './components/setting.vue'
 import viewFriends from './components/viewFriends.vue'
 import viewMessages from './components/viewMessages.vue'
 import mlogin from './components/authentication/mlogin.vue'
+import mregister from './components/authentication/mregister.vue'
 
 
 export default[
@@ -13,6 +14,6 @@ export default[
   {path:'/setting', component: setting},
   {path:'/viewFriends', component: viewFriends},
   {path:'/about', component: about},
-  {path:'/login', component: mlogin}
-
+  {path:'/login', component: mlogin},
+  {path:'/register', component: mregister}
 ]
