@@ -15,10 +15,10 @@ class TableAddrequest extends Migration
     {
         Schema::create('addrequests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->biginteger('from_user')->unsigned();
-            $table->foreign('from_user')->references('id')->on('users');
-            $table->biginteger('to_user')->unsigned();
-            $table->foreign('to_user')->references('id')->on('users');
+            $table->biginteger('sender')->unsigned();
+            $table->foreign('sender')->references('id')->on('users');
+            $table->biginteger('reciever')->unsigned();
+            $table->foreign('reciever')->references('id')->on('users');
             $table->timestamps();
         });
     }
