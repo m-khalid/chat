@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ class UserController extends Controller
 {
     use ApiResponseTrait;
     
+        ////////////// register////////////////////
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -19,7 +21,9 @@ class UserController extends Controller
             'password' => 'required|min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'required|min:6',
             'age' => 'required|integer',
+            'bio'=>'required|min:5|max:30',
            ]);
+           $token=Str::random(30);
            unset($request['password_confirmation']); 
            $password=$request->password;
            $request['password']=md5($request['password']);
@@ -29,6 +33,7 @@ class UserController extends Controller
            $user->password=$request->password;
            $user->age=$request->age;
            $user->bio=$request->bio;
+           $user->token=$token;
            if ($validator->fails()) 
             {      
                 return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
@@ -45,6 +50,8 @@ class UserController extends Controller
         }
              return $this->apiResponse(null,'404');
     }
+
+            //////// login /////////////
     public function get(Request $request)
     {
         $user_data= $this->Account($request->useraccount,$request->password);
@@ -69,26 +76,27 @@ class UserController extends Controller
             return $data;
     }
 
+    //////////////edit profile /////////////
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(),[
             'username' => 'min:4|max:20|unique:users',
             'email' => 'max:80|email|unique:users',
             'age' => 'integer',
-            'id'=>'required|integer'
            ]);
             if($request->password)
             {
                  return $this->apiResponse(null,'404');
 
             }
-           if ($validator->fails()) 
+            $token=$request->header('token');
+           if ($validator->fails()||empty($token)) 
             {      
-                return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
+                 return $this->apiResponse(null,'404');    
             }
-              
-        DB::table('users')->where('id',$request->id)->update($request->all());
-        $user_data=User::find($request->id);
+        DB::table('users')->where('token',$token)->update($request->all());
+        $user_data=User::where('token',$token)->first();
+
         if($user_data)
         {
             $data=new UserResource($user_data);
@@ -122,43 +130,51 @@ class UserController extends Controller
          return $this->apiResponse(null,'404');
         
     }
-    
+
+    //view profile/////////////
     public function display(Request $request)
     {
-        $user_data=User::find($request->id);
+
+         $token=$request->header('token');
+         if (empty($token)) 
+         {      
+            return $this->apiResponse(null,'404');      
+         }
+         $user_data=User::where('token',$token)->first();
         if($user_data)
-        {
-            $user_data->img= asset("storage/$user_data->img");
-            $data=new UserResource($user_data);
-            return $this->apiResponse($data);
-        }
+         
+            {
+                $user_data->img= asset("storage/$user_data->img");
+                $data=new UserResource($user_data);
+                return $this->apiResponse($data);
+            }
          return $this->apiResponse(null,'404');       
         
     }
+
+    ////srt img/////////
     public function setimg(Request $request)
     {
  
      $validator = Validator::make($request->all(),[
         'img'  =>  'required|file|image|mimes:jpeg,png,gif,jpg|max:2048',
-         'id' => 'required|integer',
      ]);
-     if ($validator->fails()) 
+     $token=$request->header('token');
+     if ($validator->fails()||empty($token)) 
      {      
-         return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
+        return $this->apiResponse(null,'404');      
      }
-   
-     $user_data=User::find($request->id);
-     if($user_data)
+     $user=User::where('token',$token)->first();
+     if($user)
      {
-          request()->file('img')->storeAs('public', "$user_data->id.jpg");
-         DB::table('users')->where('id',$request->id)->update(['img'=>"$user_data->id.jpg"]);
-         $user_data=User::find($request->id);
+          request()->file('img')->storeAs('public', "$user->id.jpg");
+         DB::table('users')->where('id',$user->id)->update(['img'=>"$user->id.jpg"]);
+         $user_data=User::find($user->id);
          $user_data->img= asset("storage/$user_data->img");
          $data=new UserResource($user_data);
          return $this->apiResponse($data);
- 
      }
- 
+     return $this->apiResponse(null,'404');         
     }
 
 }

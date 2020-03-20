@@ -15,10 +15,10 @@ class TableBlock extends Migration
     {
         Schema::create('blocks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->biginteger('from_user')->unsigned();
-            $table->foreign('from_user')->references('id')->on('users');
-            $table->biginteger('to_user')->unsigned();
-            $table->foreign('to_user')->references('id')->on('users');
+            $table->biginteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->biginteger('friend_id')->unsigned();
+            $table->foreign('friend_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
