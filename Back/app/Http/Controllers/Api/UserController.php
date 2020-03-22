@@ -105,22 +105,26 @@ class UserController extends Controller
          return $this->apiResponse(null,'404');
         
     }
+
+    //////////////////change password ////////////////////
     public function changepassword(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            
-            'id'=>'required|integer',
             'oldpassword' => 'required|min:6',
             'newpassword' => 'required|min:6',
            ]);
-       
+         $token=$request->header('token'); 
+         if ($validator->fails()||empty($token)) 
+         {      
+              return $this->apiResponse(null,'404');    
+         }
          $request['oldpassword']=md5($request['oldpassword']);
          $request['newpassword']=md5($request['newpassword']);
-         $user_password = User::select('password')->where('id',$request->id)->first();
+         $user_password = User::select('password')->where('token',$token)->first();
          if($user_password->password==$request->oldpassword)
          {
-            DB::table('users')->where('id',$request->id)->update(['password'=>$request->newpassword]);
-            $user_data=User::find($request->id);
+            DB::table('users')->where('token',$token)->update(['password'=>$request->newpassword]);
+            $user_data=User::where('token',$token)->first();
             if($user_data)
             {
                 $data=new UserResource($user_data);

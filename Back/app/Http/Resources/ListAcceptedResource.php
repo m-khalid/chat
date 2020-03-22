@@ -15,7 +15,7 @@ class ListAcceptedResource extends JsonResource
     public function toArray($request)
     {
         return [
-           'id'=>$this->user_1,
+           'id'=>$this->user_id,
            'username'=>$this->username,
            'img'=>$this->img,
            'time'=>$this->created_at,

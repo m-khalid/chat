@@ -59,7 +59,8 @@
 					{
 						"key": "Authorization",
 						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6OTAwMFwvYXBpXC90ZWFjaGVyXC9sb2dpbiIsImlhdCI6MTU3Mzk5MTk4OCwibmJmIjoxNTczOTkxOTg4LCJqdGkiOiIyWHJqaXBIWHFwZDNTVFNTIiwic3ViIjoxLCJwcnYiOiJiMjdiZWUyM2JhZjU0MjlmNWI5YTIxNjk2ZmRlMDNjMjc3MDQ0ZWE1In0.4LMOhI6OGhRumbPa5qycoMRtdhmv7bRwaLIqVt7i7mA ",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -298,7 +299,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL",
+						"value": "epKnB5elSVkIQv1zU9K1K9Ik2G2O5V",
 						"type": "text"
 					}
 				],
@@ -337,7 +338,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL",
+						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
 						"type": "text"
 					}
 				],
@@ -376,7 +377,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "lYNZRqnFM7UEiSj5SE7Yny7z5HcergyusUaIn4RugDlpDefTIaffmUljYodD",
+						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
 						"type": "text"
 					}
 				],
@@ -409,7 +410,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL4",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
 						"type": "text"
 					}
 				],
@@ -442,7 +443,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
 						"type": "text"
 					}
 				],
@@ -481,7 +482,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
 						"type": "text"
 					}
 				],
@@ -520,7 +521,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
 						"type": "text"
 					}
 				],
@@ -550,18 +551,19 @@
 			"name": "Accepted Request",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "from_id",
-							"value": "1",
-							"type": "text"
-						},
-						{
 							"key": "to_id",
-							"value": "6",
+							"value": "2",
 							"type": "text"
 						}
 					]
@@ -588,16 +590,16 @@
 			"name": "count Accepted",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id",
-							"value": "12",
-							"type": "text"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/countaccepted",
@@ -621,16 +623,16 @@
 			"name": "List Accepted",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id",
-							"value": "1",
-							"type": "text"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/listaccepted",
@@ -645,6 +647,35 @@
 					"path": [
 						"api",
 						"listaccepted"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Friends",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/listfriends",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"listfriends"
 					]
 				}
 			},

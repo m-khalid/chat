@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ListBlockRecource;
 use App\Block;
+use App\User;
 use DB;
 
 class BlockController extends Controller
@@ -15,23 +16,25 @@ class BlockController extends Controller
     public function block(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'from_id'  => 'required|integer',
              'to_id' => 'required|integer',
          ]);
-         if ($validator->fails()) 
+         $token=$request->header('token');
+         $user=User::where('token',$token)->first();
+         $friend=User::where('id',$request->to_id)->first();
+         if ($validator->fails()||empty($token)||empty($user)||empty($friend)) 
          {      
-             return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
+            return $this->apiResponse(null,404);      
          }
          if(Block::insert([
-            ['from_user' => $request->from_id,
-            'to_user' => $request->to_id]
+            ['user_id' => $user->id,
+            'friend_id' => $request->to_id]
         ]))
         {
-            DB::table('friends')->where([['user_1', '=', $request->from_id],['user_2','=',$request->to_id]])
-            ->orwhere([['user_2', '=', $request->from_id],['user_1','=',$request->to_id]])->delete(); 
+            DB::table('friends')->where([['user_id', '=', $user->id],['friend_id','=',$request->to_id]])
+            ->orwhere([['friend_id', '=', $user->id],['user_id','=',$request->to_id]])->delete(); 
 
-            DB::table('addrequests')->where([['from_user', '=', $request->from_id],['to_user','=',$request->to_id]])
-            ->orwhere([['to_user', '=', $request->from_id],['from_user','=',$request->to_id]])->delete();     
+            DB::table('addrequests')->where([['sender', '=', $user->id],['reciever','=',$request->to_id]])
+            ->orwhere([['reciever', '=', $user->id],['sender','=',$request->to_id]])->delete();     
             return $this->apiResponse(null);
         }
         return $this->apiResponse(null,404);
@@ -41,21 +44,18 @@ class BlockController extends Controller
     public function cancel(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'from_id'  => 'required|integer',
-             'to_id' => 'required|integer',
-         ]);
-         if ($validator->fails()) 
-         {      
-             return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
-         }
-
-         if ($validator->fails()) 
-         {      
-             return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
-         }
+            'to_id' => 'required|integer',
+        ]);
+        $token=$request->header('token');
+        $user=User::where('token',$token)->first();
+        $friend=User::where('id',$request->to_id)->first();
+        if ($validator->fails()||empty($token)||empty($user)||empty($friend)) 
+        {      
+           return $this->apiResponse(null,404);      
+        }
          if(Block::where([
-             ['from_user' , $request->from_id],
-             ['to_user' , $request->to_id],
+             ['user_id' , $user->id],
+             ['friend_id' , $request->to_id],
          ])->delete())
         {
             return $this->apiResponse(null);
@@ -67,17 +67,16 @@ class BlockController extends Controller
 
     public function list(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'id'  => 'required|integer',
-         ]);
-         if ($validator->fails()) 
-         {      
-             return response()->json(['status'=>404, 'msg'=>$validator->messages()->first()]);      
-         }  
+        $token=$request->header('token');
+        $user=User::where('token',$token)->first();
+        if (empty($token)||empty($user)) 
+        {      
+           return $this->apiResponse(null,404);      
+        }
         
          $data= DB::table('users')
-            ->join('blocks', 'users.id', '=', 'blocks.to_user')->where('from_user',$request->id)
-            ->select('blocks.to_user','users.img','users.username')->get();
+            ->join('blocks', 'users.id', '=', 'blocks.friend_id')->where('user_id',$user->id)
+            ->select('blocks.friend_id','users.img','users.username')->get();
             $users=null;
             foreach ($data as $user)
             {
