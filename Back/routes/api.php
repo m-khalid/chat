@@ -32,3 +32,4 @@ Route::post('listaccepted','FriendController@list_accepted');
 Route::post('countaccepted','FriendController@count_accept');
 Route::post('countrequest','RequestController@count_requet');
 Route::post('listrequest','RequestController@list');
+Route::post('listfriends','FriendController@list_friends');
