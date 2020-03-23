@@ -15,7 +15,7 @@ class ListRequetsRecource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->from_user,
+            'id'=>$this->sender,
             'username'=>$this->username,
             'img'=>$this->img,
             'time'=>$this->created_at,

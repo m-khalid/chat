@@ -14,7 +14,8 @@
 						"key": "Content-Type",
 						"name": "Content-Type",
 						"value": "application/x-www-form-urlencoded",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -22,24 +23,24 @@
 					"formdata": [
 						{
 							"key": "useraccount",
-							"value": "Muhammad",
+							"value": "mido",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "123456",
+							"value": "123455",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://192.168.0.100:8000/api/login",
+					"raw": "http://127.0.0.1:8000/api/login",
 					"protocol": "http",
 					"host": [
-						"192",
-						"168",
+						"127",
 						"0",
-						"100"
+						"0",
+						"1"
 					],
 					"port": "8000",
 					"path": [
@@ -58,7 +59,8 @@
 					{
 						"key": "Authorization",
 						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6OTAwMFwvYXBpXC90ZWFjaGVyXC9sb2dpbiIsImlhdCI6MTU3Mzk5MTk4OCwibmJmIjoxNTczOTkxOTg4LCJqdGkiOiIyWHJqaXBIWHFwZDNTVFNTIiwic3ViIjoxLCJwcnYiOiJiMjdiZWUyM2JhZjU0MjlmNWI5YTIxNjk2ZmRlMDNjMjc3MDQ0ZWE1In0.4LMOhI6OGhRumbPa5qycoMRtdhmv7bRwaLIqVt7i7mA ",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -66,7 +68,7 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "Muhammadkkkeeeqq",
+							"value": "midooo",
 							"type": "text"
 						},
 						{
@@ -76,7 +78,7 @@
 						},
 						{
 							"key": "email",
-							"value": "eekeek@hmail.comqq",
+							"value": "midooo@hmail.comqqvh",
 							"type": "text"
 						},
 						{
@@ -88,17 +90,22 @@
 							"key": "age",
 							"value": "4",
 							"type": "text"
+						},
+						{
+							"key": "bio",
+							"value": "********",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://192.168.0.100:8000/api/register",
+					"raw": "http://127.0.0.1:8000/api/register",
 					"protocol": "http",
 					"host": [
-						"192",
-						"168",
+						"127",
 						"0",
-						"100"
+						"0",
+						"1"
 					],
 					"port": "8000",
 					"path": [
@@ -110,48 +117,39 @@
 			"response": []
 		},
 		{
-			"name": "editprofile",
+			"name": "Set Img",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "username",
-							"value": "Muhammad22",
-							"type": "text"
-						},
-						{
-							"key": "id",
-							"value": "1",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "Muhammadkj@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "age",
-							"value": "20",
-							"type": "text"
+							"key": "img",
+							"type": "file",
+							"src": "/C:/Users/Muhammad/Pictures/Screenshots/Screenshot (1).png"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://192.168.0.100:8000/api/editprofile",
+					"raw": "http://127.0.0.1:8000/api/img",
 					"protocol": "http",
 					"host": [
-						"192",
-						"168",
+						"127",
 						"0",
-						"100"
+						"0",
+						"1"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"editprofile"
+						"img"
 					]
 				}
 			},
@@ -161,25 +159,25 @@
 			"name": "View Profile",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id",
-							"value": "100",
-							"type": "text"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
-					"raw": "http://192.168.0.100:8000/api/viewprofile",
+					"raw": "http://127.0.0.1:8000/api/viewprofile",
 					"protocol": "http",
 					"host": [
-						"192",
-						"168",
+						"127",
 						"0",
-						"100"
+						"0",
+						"1"
 					],
 					"port": "8000",
 					"path": [
@@ -191,45 +189,99 @@
 			"response": []
 		},
 		{
+			"name": "editprofile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "mido",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "mido549@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "22",
+							"type": "text"
+						},
+						{
+							"key": "bio",
+							"value": "78787",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/editprofile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"editprofile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Change Password",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
-						"key": "Content-Type",
+						"key": "token",
 						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
+						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL",
 						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL"
 					}
 				],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "id",
-							"value": "1",
-							"type": "text"
-						},
-						{
 							"key": "oldpassword",
-							"value": "123457",
+							"value": "123456",
 							"type": "text"
 						},
 						{
 							"key": "newpassword",
-							"value": "123456",
+							"value": "123455",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://192.168.0.100:8000/api/changepassword",
+					"raw": "http://127.0.0.1:8000/api/changepassword",
 					"protocol": "http",
 					"host": [
-						"192",
-						"168",
+						"127",
 						"0",
-						"100"
+						"0",
+						"1"
 					],
 					"port": "8000",
 					"path": [
@@ -244,18 +296,19 @@
 			"name": "Search",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "epKnB5elSVkIQv1zU9K1K9Ik2G2O5V",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "username",
-							"value": "muhammad",
-							"type": "text"
-						},
-						{
-							"key": "id",
-							"value": "1",
+							"value": "m",
 							"type": "text"
 						}
 					]
@@ -279,59 +332,22 @@
 			"response": []
 		},
 		{
-			"name": "Set Img",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "img",
-							"type": "file",
-							"src": "/C:/Users/Muhammad/Desktop/m.jpg"
-						},
-						{
-							"key": "id",
-							"value": "1",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://192.168.0.100:8000/api/img",
-					"protocol": "http",
-					"host": [
-						"192",
-						"168",
-						"0",
-						"100"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"img"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Request",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "from_id",
-							"value": "1",
-							"type": "text"
-						},
-						{
 							"key": "to_id",
-							"value": "18",
+							"value": "2",
 							"type": "text"
 						}
 					]
@@ -358,16 +374,16 @@
 			"name": "Count Request",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id",
-							"value": "4",
-							"type": "text"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/countrequest",
@@ -391,16 +407,16 @@
 			"name": "List Request",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id",
-							"value": "4",
-							"type": "text"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/listrequest",
@@ -424,15 +440,16 @@
 			"name": "Block",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
-						{
-							"key": "from_id",
-							"value": "1",
-							"type": "text"
-						},
 						{
 							"key": "to_id",
 							"value": "2",
@@ -462,15 +479,16 @@
 			"name": "cancelblock",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
-						{
-							"key": "from_id",
-							"value": "1",
-							"type": "text"
-						},
 						{
 							"key": "to_id",
 							"value": "2",
@@ -500,16 +518,16 @@
 			"name": " List Block",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id",
-							"value": "2",
-							"type": "text"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/listblock",
@@ -533,18 +551,19 @@
 			"name": "Accepted Request",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "from_id",
-							"value": "1",
-							"type": "text"
-						},
-						{
 							"key": "to_id",
-							"value": "6",
+							"value": "2",
 							"type": "text"
 						}
 					]
@@ -571,16 +590,16 @@
 			"name": "count Accepted",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id",
-							"value": "12",
-							"type": "text"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/countaccepted",
@@ -604,16 +623,16 @@
 			"name": "List Accepted",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id",
-							"value": "1",
-							"type": "text"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/listaccepted",
@@ -628,6 +647,35 @@
 					"path": [
 						"api",
 						"listaccepted"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Friends",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/listfriends",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"listfriends"
 					]
 				}
 			},

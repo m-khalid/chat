@@ -15,7 +15,7 @@ class ListBlockRecource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->to_user,
+            'id'=>$this->friend_id,
             'username'=>$this->username,
             'img'=>$this->img,
         ];

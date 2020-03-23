@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusToFriends extends Migration
+class AddTokenToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddStatusToFriends extends Migration
      */
     public function up()
     {
-        Schema::table('friends', function (Blueprint $table) {
-            $table->boolean('status');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('token')->unique();
+            
         });
     }
 
@@ -25,8 +26,8 @@ class AddStatusToFriends extends Migration
      */
     public function down()
     {
-        Schema::table('friends', function (Blueprint $table) {
-            $table->dropColumn(['status']);
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn(['token'])->unique();
             
         });
     }
