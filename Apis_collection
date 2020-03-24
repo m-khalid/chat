@@ -680,6 +680,50 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Send messages",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "to_id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "hello",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/sendmsg",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sendmsg"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
