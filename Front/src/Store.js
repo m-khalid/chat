@@ -1,42 +1,65 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import axios from 'axios'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import axios from 'axios';
 import cUser from './modules/User';
+import UI from './modules/UI';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state: {},
+    state: {
+        token: localStorage.getItem('token')||null
+
+    },
     mutations: {},
+    getters: {
+        loggedIn(state){
+            return state.token != null;
+        }
+    },
     actions: {
-        login: (commit, payload) => {
+        login: (context, payload) => {
             console.log('iam in action login');
-            return new Promise((resolve, reject)=>{
+            
                 axios.post('login', payload)
-                .then((data, status) =>{
-                  if(status===200){
-                      resolve(true);
+                .then(response=>{
+                  if(response.status==200){
+                    const token =response.data.data.token;
+                      localStorage.setItem('token', token);
                   }
-                }).catch(error =>{
-                    reject(error);
-                })
-            });
+                }).catch( ()=>{
+                    alert('wrong username or password');
+                });
+            
         },
         register: (commit , payload)=>{
-            console.log("i'm in register hoooooo");
-            return new Promise((resolve, reject)=>{
+            return new Promise((resolve, reject)=> {
                 axios.post('register', payload)
-                .then((data, status)=>{
-                    if(status===200){
-                        resolve(true);
+                .then(response=>{
+                    console.log(response);
+                    console.log('break!');
+                    console.log(response.data.msg);
+                  
+                     if(response.data.status==200){
+                        alert('success!');
+                        const token =response.data.data.token;
+                        localStorage.setItem('token', token);
+                        resolve(response);
+                    }else{
+                        throw new Error(response.data.msg);
                     }
-                }).catch(error =>{
+                }).catch( error=>{
+                    alert(error);
                     reject(error);
                 })
-            });
+            })
+        },
+        logout: () =>{
+            localStorage.clear();
         }
     },
     modules: {
-        cUser: cUser
+        cUser: cUser,
+        UI: UI
     }
 })

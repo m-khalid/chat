@@ -35,11 +35,10 @@ export default{
                 useraccount: this.username,
                 password: this.password
             }).then(()=>{
-              console.log('he5aaaaaaaa 43al');
-            }).catch((error)=>{
-              console.log('la2 yabaaa: '+error);
+              this.$router.replace('/');
+            }).catch(()=>{
+               alert('wrong username or password');
             })
-            
         }
     }
 }

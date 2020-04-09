@@ -2,14 +2,13 @@
   <nav class="navbar navbar-expand-lg">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav mr-auto container-fluid">
-    <li class="nav-item col mainli"> <router-link to='/'>view messages</router-link></li>
-    <li class="nav-item col mainli"><router-link to='/search'>search</router-link></li>
-    <li class="nav-item col mainli"><router-link to='/viewFriends'>View Frinds</router-link></li>
-    <li class="col"></li>
-    <li class="col"></li>
-    <li class="col"></li>
-    <li class="nav-item col mainli">
-      <div class="navbarDropdown">
+    <!-- in case of logged in-->
+    <li v-if="loggedIn" class="nav-item col-2 mainli"> <router-link to='/'>view messages</router-link></li>
+    <li v-if="loggedIn" class="nav-item col-2 mainli"><router-link to='/search'>search</router-link></li>
+    <li v-if="loggedIn" class="nav-item col-2 mainli"><router-link to='/viewFriends'>View Frinds</router-link></li>
+    <li v-if="loggedIn" class="col"></li>
+    <li v-if="loggedIn" class="nav-item col-2 mainli">
+      <div  class="navbarDropdown">
         <span>menu 
           <!-- <font-awesome-icon :icon="['fas', 'chevron-circle-down']" /> -->
         </span>
@@ -18,11 +17,16 @@
           <ul>
             <li><router-link to='/setting'>Setting</router-link></li>
             <li><router-link to='/about'>About</router-link></li>
-            <li>Logout</li>
+            <li v-on:click="logout">Logout</li>
         </ul>
       </div>
       </div>
     </li>
+    <li v-if="!loggedIn" class="nav-item col-9 mainli"></li>
+    <li v-if="!loggedIn" class="nav-item col-1 mainli"><router-link to='/login'>Login</router-link></li>
+    <li v-if="!loggedIn" class="nav-item col-1 mainli"><router-link to='/register'>Register</router-link></li>
+
+
   </ul>
   </div>
       </nav>
@@ -30,7 +34,29 @@
 
 <script>
 export default{
-  name: 'mHeader'
+  name: 'mHeader',
+  // data: ()=>{
+  //   //renderComponent: true
+  // },
+  computed: {
+    loggedIn(){
+      return this.$store.getters.loggedIn;
+    }
+  },
+  methods: {
+    logout(){
+      alert('clicked logout!');
+      this.$store.dispatch('logout');
+    }
+    // forceRender(){
+    //   //removing the component
+    //   this.renderComponent =false;
+    //   this.$nextTick(() => {
+    //       // Adding the component back 
+    //       this.renderComponent = true;
+    //     });
+    // }
+  }
 }
 </script>
 
