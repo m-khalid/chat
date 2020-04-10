@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+        <mHeader> </mHeader>
         <router-view></router-view>
   </div>
 </template>
@@ -9,7 +10,7 @@
 export default {
   name: 'App',
   components: {
-    
+    'mHeader': require('./components/mHeader.vue').default
   }
 }
 </script>
@@ -21,6 +22,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

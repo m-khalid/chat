@@ -1,5 +1,5 @@
 <template>
-    <div class="container d-flex justify-content-center ">
+    <div class="container d-flex justify-content-center maincon ">
       <div class="row h-100">
       <div class="col  align-self-center">
         <div class="row justify-content-center"><h1>Register</h1></div>
@@ -9,7 +9,7 @@
                 <input type="text" class="inputfield"  id="userNameInput" placeholder="User name" v-model="username" value="">
               </div>
               <div class="row">
-                <input type="text" class="inputfield"  id="userNameInput" placeholder="E-mail" v-model="Email" value="">
+                <input type="text" class="inputfield"  id="emailInput" placeholder="E-mail" v-model="Email" value="">
               </div>
               <div class="row">
                 <input type="password" class="inputfield"  id="passwordInput" placeholder="Password" v-model="password" value="">
@@ -45,24 +45,22 @@ export default{
       bio: ''
     }),
     methods: {
-        Register() {
+        Register: function() {
             console.log('i have been clicked');
-            this.$store.dispatch('register', {
-                useraccount: this.username,
-                password: this.password,
-                password_confirmation: this.password_confirmation,
-                age: this.age,
-                bio: this.bio 
-            }).then(()=>{
-              console.log('he5aaaaaaaa 43al');
-            }).catch((error)=>{
-              console.log('la2 yabaaa: '+error);
-            })
-        },
-        validate() {
-            return (this.password_confirmation === this.password);
-            
+             this.$store.dispatch('register', {
+                 username: this.username,
+                 email: this.Email,
+                 password: this.password,
+                 password_confirmation: this.password_confirmation,
+                 age: this.age,
+                 bio: this.bio 
+             }).then(()=>{
+               this.$router.push('/');
+             }).catch((error)=>{
+               console.log(error);
+           })
         }
+
     }
 }
 
@@ -90,8 +88,8 @@ width: 520px;
   margin-bottom: 50px;
 }
 
-.contaitner{
-  margin-top: auto;
-  margin-bottom: auto;
+.maincon{
+  margin-top: 60px;
+  margin-bottom: 90px;
 }
 </style>

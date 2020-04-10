@@ -8,12 +8,12 @@ import mregister from './components/authentication/mregister.vue'
 
 
 export default[
-  {path:'/', component: viewMessages},
-  {path:'/viewMessages', component: viewMessages},
-  {path:'/search', component: search},
-  {path:'/setting', component: setting},
-  {path:'/viewFriends', component: viewFriends},
-  {path:'/about', component: about},
-  {path:'/login', component: mlogin},
-  {path:'/register', component: mregister}
+  {path:'/', component: viewMessages, meta: { requiresAuth: true}},
+  {path:'/viewMessages', component: viewMessages, meta: { requiresAuth: true}},
+  {path:'/search', component: search, meta: { requiresAuth: true}},
+  {path:'/setting', component: setting, meta: { requiresAuth: true}},
+  {path:'/viewFriends', component: viewFriends, meta: { requiresAuth: true}},
+  {path:'/about', component: about, meta: { requiresAuth: true}},
+  {path:'/login', component: mlogin, meta: { requiresVisitor: true}},
+  {path:'/register', component: mregister, meta: { requiresVisitor: true}}
 ]
