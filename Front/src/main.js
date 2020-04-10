@@ -3,29 +3,52 @@ import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import VueRouter from 'vue-router'
 import Routes from './routes'
-import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome'
-
-Vue.component('font-awesome-icon', FontAwesomeIcon);
-Vue.component('font-awesome-layers', FontAwesomeLayers);
-Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
+import store from './Store'
+import axios from 'axios';
+import validator from 'validator';
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
+Vue.use(validator);
 
-library.add(faUserSecret)
+axios.defaults.baseURL='http://localhost:8000/api/'
 
-//setting up the router
+//Vue.config.productionTip = false
 const router = new VueRouter({
-    routes: Routes // short for `routes: routes`
+  routes: Routes, // short for `routes: routes`
+  mode: 'history'
 })
-
-Vue.config.productionTip = false
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!store.getters.loggedIn) {
+      next('/login')
+    } else {
+      next()
+    }
+  }else if (to.matched.some(record => record.meta.requiresVisitor)) {
+    // this route requires visitor, check if logged in
+    // if not, redirect to login page.
+    if (store.getters.loggedIn) {
+      new Promise.resolve(next('/')).then(()=>{
+      //Todo: fix the manual refresh issue
+      console.log('logged')
+      }).catch((er)=>{
+        console.log("Error: " +er)
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() 
+  }
+})
 
 new Vue({
   render: h => h(App),
-  router: router
+  router: router,
+  store: store
 }).$mount('#app')
