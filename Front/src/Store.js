@@ -15,21 +15,23 @@ export default new Vuex.Store({
     getters: {
         loggedIn(state){
             return state.token != null;
+        },
+        getToken(state){
+            return state.token;
         }
     },
     actions: {
         login: (context, payload) => {
-            console.log('iam in action login');
-            
+
                 axios.post('login', payload)
                 .then(response=>{
                   if(response.status==200){
                     const token =response.data.data.token;
                       localStorage.setItem('token', token);
                   }
-                }).catch( ()=>{
-                    alert('wrong username or password');
-                });
+                }).catch( er=>{
+                    alert('wrong username or password' + er);
+                })
             
         },
         register: (commit , payload)=>{
@@ -56,7 +58,49 @@ export default new Vuex.Store({
         },
         logout: () =>{
             localStorage.clear();
-        }
+        }, 
+        setImage: (commit, payload)=>{
+          /*  axios.post('img', payload , {headers: {'token': localStorage.getItem('token')}})
+            .then(response=>{
+                console.log('request sent')
+                if(response.status==200){
+                    console.log(' img sucess');
+                }else{
+                    console.log("img error");
+                }
+            }).catch(er=>{
+                console.log(er);
+            })
+            */
+
+            axios({
+                method: "POST", 
+                data: payload,
+                headers: {authorization: localStorage.getItem('token')}
+            }).then(response=>{
+                console.log('request sent')
+                if(response.status==200){
+                    console.log(' img sucess');
+                }else{
+                    console.log("img error");
+                }
+            }).catch(er=>{
+                console.log(er);
+            })
+        },
+        editProfile: (commit, payload)=>{
+            axios.post('editprofile', payload , {headers: {'token': localStorage.getItem('token')}})
+            .then(response=>{
+                console.log('request sent')
+                if(response.status==200){
+                    console.log('editprofile sucess');
+                }else{
+                    console.log(" editprofile error");
+                }
+            }).catch(er=>{
+                console.log(er);
+            })
+        },
     },
     modules: {
         cUser: cUser,
