@@ -33,3 +33,5 @@ Route::post('countaccepted','FriendController@count_accept');
 Route::post('countrequest','RequestController@count_requet');
 Route::post('listrequest','RequestController@list');
 Route::post('listfriends','FriendController@list_friends');
+Route::post('sendmsg','ChatController@send_msg');
+Route::post('messages','ChatController@messages');
