@@ -23,12 +23,12 @@
 					"formdata": [
 						{
 							"key": "useraccount",
-							"value": "mido",
+							"value": "midoooppe",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "123455",
+							"value": "123456",
 							"type": "text"
 						}
 					]
@@ -68,7 +68,7 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "midooo",
+							"value": "midooofnjenjNJBJ",
 							"type": "text"
 						},
 						{
@@ -78,7 +78,7 @@
 						},
 						{
 							"key": "email",
-							"value": "midooo@hmail.comqqvh",
+							"value": "midoEFNooeke@hmail.comqqvh",
 							"type": "text"
 						},
 						{
@@ -120,20 +120,19 @@
 			"name": "Set Img",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "img",
 							"type": "file",
-							"src": "/C:/Users/Muhammad/Pictures/Screenshots/Screenshot (1).png"
+							"src": "/C:/Users/Muhammad/Pictures/Screenshots/Screenshot (2).png"
+						},
+						{
+							"key": "token",
+							"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
+							"type": "text"
 						}
 					]
 				},
@@ -159,16 +158,16 @@
 			"name": "View Profile",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": []
+					"formdata": [
+						{
+							"key": "token",
+							"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/viewprofile",
@@ -192,13 +191,7 @@
 			"name": "editprofile",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -211,17 +204,30 @@
 						{
 							"key": "email",
 							"value": "mido549@gmail.com",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "age",
 							"value": "22",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "bio",
-							"value": "78787",
+							"value": "787/",
 							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "erf rkf",
+							"type": "text",
+							"disabled": true
 						}
 					]
 				},
@@ -247,18 +253,7 @@
 			"name": "Change Password",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"name": "Content-Type",
-						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "vFflZQpo83MD94Uh11qPhDDQyYdftr2l2LuhpGj8eY0V0J31QVUbIvey5vWL"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
@@ -269,7 +264,12 @@
 						},
 						{
 							"key": "newpassword",
-							"value": "123455",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
 							"type": "text"
 						}
 					]
