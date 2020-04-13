@@ -45,17 +45,13 @@ export default{
   },
   methods: {
     logout(){
-      alert('clicked logout!');
-      this.$store.dispatch('logout');
+      this.$store.dispatch('logout').then(()=>{
+        this.vm.$forceUpdate();
+      }).catch()
     }
-    // forceRender(){
-    //   //removing the component
-    //   this.renderComponent =false;
-    //   this.$nextTick(() => {
-    //       // Adding the component back 
-    //       this.renderComponent = true;
-    //     });
-    // }
+  },
+  watch: {
+
   }
 }
 </script>
