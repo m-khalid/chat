@@ -1,6 +1,0 @@
-php artisan key:generate
-php artisan cache:clear
-php artisan config:clear
-composer dump-autoload
-php artisan migrate
-php artisan storage:link
