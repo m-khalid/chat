@@ -31,7 +31,10 @@
 							"value": "123456",
 							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/login",
@@ -96,7 +99,10 @@
 							"value": "********",
 							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/register",
@@ -134,7 +140,10 @@
 							"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
 							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/img",
@@ -167,7 +176,10 @@
 							"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
 							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/viewprofile",
@@ -229,7 +241,10 @@
 							"type": "text",
 							"disabled": true
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/editprofile",
@@ -272,7 +287,10 @@
 							"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
 							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"urlencoded": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/changepassword",
@@ -296,13 +314,7 @@
 			"name": "Search",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "epKnB5elSVkIQv1zU9K1K9Ik2G2O5V",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -310,8 +322,16 @@
 							"key": "username",
 							"value": "m",
 							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "q86GK9Xt2YFU2aZrOA9ZgkMCUl8s4a",
+							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/search",
@@ -335,13 +355,7 @@
 			"name": "Request",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -349,8 +363,16 @@
 							"key": "to_id",
 							"value": "2",
 							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "q86GK9Xt2YFU2aZrOA9ZgkMCUl8s4a",
+							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/request",
@@ -374,16 +396,19 @@
 			"name": "Count Request",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": []
+					"formdata": [
+						{
+							"key": "token",
+							"value": "UNtEzAKspemwFbIprcdS8gM9hwYlX3",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/countrequest",
@@ -407,16 +432,19 @@
 			"name": "List Request",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": []
+					"formdata": [
+						{
+							"key": "token",
+							"value": "q86GK9Xt2YFU2aZrOA9ZgkMCUl8s4a",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/listrequest",
@@ -440,13 +468,7 @@
 			"name": "Block",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -454,8 +476,16 @@
 							"key": "to_id",
 							"value": "2",
 							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "q86GK9Xt2YFU2aZrOA9ZgkMCUl8s4a",
+							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/block",
@@ -479,13 +509,7 @@
 			"name": "cancelblock",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -493,8 +517,16 @@
 							"key": "to_id",
 							"value": "2",
 							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "q86GK9Xt2YFU2aZrOA9ZgkMCUl8s4a",
+							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/cancelblock",
@@ -518,16 +550,19 @@
 			"name": " List Block",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": []
+					"formdata": [
+						{
+							"key": "token",
+							"value": "q86GK9Xt2YFU2aZrOA9ZgkMCUl8s4a",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/listblock",
@@ -551,22 +586,24 @@
 			"name": "Accepted Request",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "to_id",
-							"value": "2",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "UNtEzAKspemwFbIprcdS8gM9hwYlX3",
 							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/acceptedrequest",
@@ -590,16 +627,19 @@
 			"name": "count Accepted",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": []
+					"formdata": [
+						{
+							"key": "token",
+							"value": "q86GK9Xt2YFU2aZrOA9ZgkMCUl8s4a",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/countaccepted",
@@ -623,16 +663,19 @@
 			"name": "List Accepted",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": []
+					"formdata": [
+						{
+							"key": "token",
+							"value": "q86GK9Xt2YFU2aZrOA9ZgkMCUl8s4a",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/listaccepted",
@@ -656,13 +699,17 @@
 			"name": "List Friends",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "c12G16V7SUrRbuGzibRsWKM0e22bjB",
-						"type": "text"
-					}
-				],
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "token",
+							"value": "q86GK9Xt2YFU2aZrOA9ZgkMCUl8s4a",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/listfriends",
 					"protocol": "http",
@@ -685,13 +732,7 @@
 			"name": "Send messages",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "Ujmeyk1DTUWDKf1ZxM3bZ7uAW3KJyN",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -704,8 +745,16 @@
 							"key": "message",
 							"value": "hello",
 							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "q86GK9Xt2YFU2aZrOA9ZgkMCUl8s4a",
+							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/sendmsg",
@@ -729,22 +778,24 @@
 			"name": "Messages",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "epKnB5elSVkIQv1zU9K1K9Ik2G2O5V",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "to_id",
-							"value": "12",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "FgD5aovilJbjI7xmfr86HYtXXanOR5",
 							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/messages",
