@@ -11,17 +11,28 @@ use DB;
 
 class BlockController extends Controller
 {
+    public function __construct()
+        {
+            $request =  Request();
+            $user_data=User::where('token',$request->token)->first();
+            return $user_data;
+        }
     use ApiResponseTrait;
 
     public function block(Request $request)
     {
         $validator = Validator::make($request->all(),[
              'to_id' => 'required|integer',
+              'token'=>'required',
          ]);
-         $token=$request->header('token');
-         $user=User::where('token',$token)->first();
+         $user=$this->__construct();
+       if (!$user)
+       {
+       return $this->apiResponse(null,404);
+
+       }
          $friend=User::where('id',$request->to_id)->first();
-         if ($validator->fails()||empty($token)||empty($user)||empty($friend)) 
+         if ($validator->fails()||empty($user)||empty($friend)) 
          {      
             return $this->apiResponse(null,404);      
          }
@@ -45,9 +56,14 @@ class BlockController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'to_id' => 'required|integer',
+            'token'=>'required',
         ]);
-        $token=$request->header('token');
-        $user=User::where('token',$token)->first();
+        $user=$this->__construct();
+        if (!$user)
+        {
+        return $this->apiResponse(null,404);
+        }
+        $token=$user->token;
         $friend=User::where('id',$request->to_id)->first();
         if ($validator->fails()||empty($token)||empty($user)||empty($friend)) 
         {      
@@ -67,12 +83,21 @@ class BlockController extends Controller
 
     public function list(Request $request)
     {
-        $token=$request->header('token');
-        $user=User::where('token',$token)->first();
-        if (empty($token)||empty($user)) 
-        {      
-           return $this->apiResponse(null,404);      
-        }
+            
+    $validator = Validator::make($request->all(),[
+        'token'=>'required',
+       ]);
+       if ($validator->fails()) 
+       {      
+        return $this->apiResponse(null,'404',$validator->messages()->first());    
+       }
+       $user=$this->__construct();
+       if (!$user)
+       {
+       return $this->apiResponse(null,404);
+       }
+
+      $token=$user->token;
         
          $data= DB::table('users')
             ->join('blocks', 'users.id', '=', 'blocks.friend_id')->where('user_id',$user->id)
