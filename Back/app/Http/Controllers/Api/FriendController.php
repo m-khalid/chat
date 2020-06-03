@@ -14,20 +14,27 @@ use Carbon\Carbon;
 
 class FriendController extends Controller
 {
+    public function __construct()
+        {
+            $request =  Request();
+            $user_data=User::where('token',$request->token)->first();
+            return $user_data;
+        }
     use ApiResponseTrait;
             ////// accept add ////////////
     public function added(Request $request)
     {
     $validator = Validator::make($request->all(),[  
         'to_id' => 'required|integer',
+        'token'=>'required',
        ]);
-       $token=$request->header('token');
-       $user=User::where('token',$token)->first();
-       if ($validator->fails()||empty($token)||empty($user)) 
+       $user=$this->__construct();
+     
+       if ($validator->fails()||empty($user)) 
        {      
         return $this->apiResponse(null,404); 
        }
-      
+       $token=$user->token;
        if(!empty(Addrequest::where([
            ['sender',$request->to_id],
            ['reciever',$user->id]
@@ -52,13 +59,17 @@ class FriendController extends Controller
 ///////////////////////////////////////////////////////////////
     public function list_accepted (Request $request)
     {
-        $token=$request->header('token');
-           if (empty($token)) 
+        $validator = Validator::make($request->all(),[
+            'token'=>'required',
+           ]);
+           if ($validator->fails()) 
            {      
-            return $this->apiResponse(null,404);   
+            return $this->apiResponse(null,'404',$validator->messages()->first());    
            }
-           $user=User::where('token',$token)->first();
+
+           $user=$this->__construct();
            if($user){
+            $token=$user->token;
                  $data= DB::table('users')
                 ->join('friends', 'users.id', '=', 'friends.user_id')->where('friend_id',$user->id)
                 ->select('friends.user_id','users.img','friends.created_at','users.username')->get();
@@ -80,13 +91,16 @@ class FriendController extends Controller
     ////// count of accepted request//////////
     public function count_accept(Request $request)
     {
-        $token=$request->header('token');
-        if (empty($token)) 
-        {      
-         return $this->apiResponse(null,404);   
-        }
-        $user=User::where('token',$token)->first();
+        $validator = Validator::make($request->all(),[
+            'token'=>'required',
+           ]);
+           if ($validator->fails()) 
+           {      
+            return $this->apiResponse(null,'404',$validator->messages()->first());    
+           }
+        $user=$this->__construct();
         if($user){
+            $token=$user->token;
          $data['count']= Friend::where([['friend_id', $user->id],['status',1]])->count('status');
         return   $this->apiResponse($data);
         }
@@ -96,13 +110,21 @@ class FriendController extends Controller
     ///////////////////////////list friends/////////////////////
     public function list_friends(Request $request)
     {
-        $token=$request->header('token');
-        $user=User::where('token',$token)->first();
-        if(empty($token)||empty($user))
-        {
-        return $this->apiResponse(null,404);
-        }
+       
+        $validator = Validator::make($request->all(),[
+            'token'=>'required',
+           ]);
+           if ($validator->fails()) 
+           {      
+            return $this->apiResponse(null,'404',$validator->messages()->first());    
+           }
+           $user=$this->__construct();
+           if (!$user)
+           {
+           return $this->apiResponse(null,404);
     
+           }
+           $token=$user->token;
         $data=Friend::where('user_id',$user->id)
         ->orwhere('friend_id',$user->id)
         ->get();

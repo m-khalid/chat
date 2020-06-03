@@ -12,20 +12,29 @@ use App\Chat;
 
 class ChatController extends Controller
 {
+    public function __construct()
+    {
+        $request =  Request();
+        $user_data=User::where('token',$request->token)->first();
+        return $user_data;
+    }
+
     use ApiResponseTrait;
     public function send_msg(Request $request)
     {
         $validator = Validator::make($request->all(),[
             'to_id' => 'required|integer',
             'message' => 'required|min:1',
+            'token'=>'required',
            ]);  
-           $token=$request->header('token');
-           $user=User::where('token',$token)->first();
+           $user=$this->__construct();
+          
            $friend=User::where('id',$request->to_id)->first();
-           if ($validator->fails()||empty($token)||empty($user)||empty($friend)) 
+           if ($validator->fails()||empty($user)||empty($friend)) 
            {
             return $this->apiResponse(null,404);    
            }
+           $token=$user->token;
            $chat = new Chat();
            $chat->sender=$user->id;
            $chat->reciever=$request->to_id;
@@ -40,14 +49,15 @@ class ChatController extends Controller
         {
             $validator = Validator::make($request->all(),[
                 'to_id' => 'required|integer',
+                'token'=>'required',                
                ]);  
-               $token=$request->header('token');
-               $user=User::where('token',$token)->first();
+               $user=$this->__construct();
                $friend=User::where('id',$request->to_id)->first();
-               if ($validator->fails()||empty($token)||empty($user)||empty($friend)) 
+               if ($validator->fails()||empty($user)||empty($friend)) 
                {
                 return $this->apiResponse(null,404);    
                }
+               $token=$user->token;
                $messages=Chat::where([
                    ['sender',$user->id],['reciever',$friend->id]
                    ])->orwhere([['reciever',$user->id],['sender',$friend->id]])->orderBy('created_at','desc')->get();

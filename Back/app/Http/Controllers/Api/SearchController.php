@@ -10,18 +10,35 @@ use App\Block;
 use DB; 
 class SearchController extends Controller
 {
+    public function __construct()
+        {
+            $request =  Request();
+            $user_data=User::where('token',$request->token)->first();
+            return $user_data;
+        }
     
     use ApiResponseTrait;
+
     public function search(Request $request)
     {
+        
     $validator = Validator::make($request->all(),[
         'username' => 'required',
+        'token'=>'required',
        ]);
-       $token=$request->header('token');
-       if ($validator->fails()||empty($token)) 
+       if ($validator->fails()) 
        {      
-             return $this->apiResponse(null,404);
+        return $this->apiResponse(null,'404',$validator->messages()->first());    
        }
+       $user_data=$this->__construct();
+       if (!$user_data)
+       {
+       return $this->apiResponse(null,404);
+
+       }
+
+       $token=$user_data->token;
+     
        $users = User::
         where('username', 'like', "%{$request->username}%")->orwhere('email',$request->username)
        ->get();
