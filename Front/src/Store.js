@@ -60,36 +60,36 @@ export default new Vuex.Store({
             localStorage.clear();
         }, 
         setImage: (commit, payload)=>{
-          /*  axios.post('img', payload , {headers: {'token': localStorage.getItem('token')}})
-            .then(response=>{
-                console.log('request sent')
-                if(response.status==200){
-                    console.log(' img sucess');
-                }else{
-                    console.log("img error");
-                }
-            }).catch(er=>{
-                console.log(er);
-            })
-            */
-
-            axios({
-                method: "POST", 
-                data: payload,
-                headers: {authorization: localStorage.getItem('token')}
-            }).then(response=>{
-                console.log('request sent')
-                if(response.status==200){
-                    console.log(' img sucess');
-                }else{
-                    console.log("img error");
-                }
-            }).catch(er=>{
-                console.log(er);
-            })
+            let token =localStorage.getItem('token');
+            let formData =payload.formData;
+            formData.append('token', token);
+            console.log(formData.token);
+            console.log(FormData.img);
+            axios.post('img',formData, {headers: { 'Content-Type': 'multipart/form-data'
+            }} ).then(response =>{
+                    console.log('request sent')
+                    if(response.status==200){
+                        console.log(' img sucess');
+                    }else if(response.status==404){
+                        console.log(response.msg);
+                    }
+                    else{
+                        console.log("img error");
+                    }
+                }).catch(er=>{
+                    
+                    console.log('this not what i need'+er);
+                })
         },
         editProfile: (commit, payload)=>{
-            axios.post('editprofile', payload , {headers: {'token': localStorage.getItem('token')}})
+            let token =localStorage.getItem('token');
+        
+           let username= payload.username;
+           let email= payload.email;
+           let age= payload.age;
+           let bio= payload.bio;
+
+            axios.post('editprofile', {token, username, email, age, bio} )
             .then(response=>{
                 console.log('request sent')
                 if(response.status==200){
@@ -99,6 +99,7 @@ export default new Vuex.Store({
                 }
             }).catch(er=>{
                 console.log(er);
+                console.log("error editing the profil")
             })
         },
     },
