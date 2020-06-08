@@ -2,14 +2,16 @@
     <div class="container d-flex justify-content-center">
       <div class="col align-self-center">
         <!-- image goes here-->
-        <div class="card" style="width: 18rem;">
-          <img v-bind{{selectedProfileImage}} class="card-img-top" alt="profile image">
+        <form enctype="multipart/form-data" class="card" style="width: 18rem;">
+         <!-- <img v-bind{{selectedProfileImage}} class="card-img-top" alt="profile image">
+         -->
           <div class="card-body">
             <h5 class="card-title">change profile image</h5>
-            <input type="file" @change="onImageSelected">
+            <input type="file" id="selectedProfileImage" v-on:change="onImageSelected" >
             <button class="btn btn-primary" @click="onImgUploadClick">Upload</button>
+
           </div>
-        </div>
+        </form>
       </div>
       <div class="col-9">
           <form class="form_container " v-on:submit.prevent="confirmChanges()">
@@ -17,13 +19,13 @@
                 <h1>Setting</h1>
             </div>
             <div class="row justify-content-center">
-                <input type="text" placeholder="User Name" v-model="user_name"  value="">
+                <input type="text" placeholder="User Name" v-model="username" >
             </div>
             <div class="row justify-content-center">
-              <input type="text" placeholder="E-mail" v-model="Email" value="">
+              <input type="text" placeholder="E-mail" v-model="email">
             </div>
             <div class="row justify-content-center">
-              <input type="text" placeholder="age" v-model="age" value="">
+              <input type="text" placeholder="age" v-model="age" >
             </div>
             <div class="row justify-content-center">
               <textarea placeholder="Bio" id='bio_input' v-model="bio" rows="6" cols="30"></textarea>
@@ -48,8 +50,8 @@
   export default{
     data: ()=>({
       selectedProfileImage: null,
-      user_name: '',   
-      Email: '',
+      username: '',   
+      email: '',
       age: null,
       bio: ''
     }),
@@ -58,20 +60,26 @@
           this.selectedProfileImage = event.target.files[0];
         },
         onImgUploadClick(){
+          let formData = new FormData();
+          formData.append( 'img',this.selectedProfileImage);
+
           this.$store.dispatch('setImage', {
-            img: this.selectedProfileImage
+           //img: this.selectedProfileImage
+            FormData: formData
+          
           }).then(()=>{
             console.log("new Image selected");
-            
           }).catch(er=>{
             console.log(er)
           })
         },
         confirmChanges(){  
           console.log('confirm changes clicked');
+          console.log(this.username);
+          console.log(this.email);
           this.$store.dispatch('editProfile',{
-            username: this.user_name,
-            email: this.Email,
+            username: this.username,
+            email: this.email,
             age: this.age,
             bio: this.bio
           })
