@@ -36,9 +36,7 @@ class SearchController extends Controller
        return $this->apiResponse(null,404);
 
        }
-
        $token=$user_data->token;
-     
        $users = User::
         where('username', 'like', "%{$request->username}%")->orwhere('email',$request->username)
        ->get();
