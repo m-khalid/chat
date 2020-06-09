@@ -102,6 +102,22 @@ export default new Vuex.Store({
                 console.log("error editing the profil")
             })
         },
+        viewresults: async (commit, payload)=>{
+            let token =localStorage.getItem('token');
+
+            
+            let username= payload.username;
+           return await axios.post('search',{token, username}).then(response => {
+              return response.data.data;
+               
+               
+            }).catch(er=>{
+                    console.log(er);
+                });
+                
+            
+                   
+            }
     },
     modules: {
         cUser: cUser,
