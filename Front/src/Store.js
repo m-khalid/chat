@@ -117,6 +117,16 @@ export default new Vuex.Store({
                 
             
                    
+            },
+            viewfriends: async() =>{
+                let token =localStorage.getItem('token');
+                return await axios.post('listfriends',{token}).then(response =>
+                    {
+                        return response.data.data;
+                      
+                    }).catch(er=>{
+                        console.log(er);
+                    });
             }
     },
     modules: {

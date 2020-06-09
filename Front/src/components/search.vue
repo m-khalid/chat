@@ -30,7 +30,7 @@ export default
       {
       username: '',
       responsedata: [],
-      linko: ''
+      
       }),
     methods: {
          async search(){  
