@@ -1,5 +1,5 @@
 <template>
-    <div class="container d-flex justify-content-center maincon ">
+    <div class="container d-flex justify-content-center ">
       <div class="row h-100">
       <div class="col  align-self-center">
         <div class="row justify-content-center"><h1>Register</h1></div>
@@ -45,8 +45,23 @@ export default{
       bio: ''
     }),
     methods: {
+      
+      VconfirmPassword: function(){ // validate tha password === confirm passorwd
+              if(this.password === this.password_confirmation){
+                return true;
+              }else{
+                throw 'confirm password must match password';
+              }
+        },
+        validateAll: function() { //validate all fields
+            //return new Promise.resolve(VconfirmPassword()).catch((error)=>{
+             // alert(error);
+           // })
+        },
+
         Register: function() {
             console.log('i have been clicked');
+            //new Promise.resolve(validateAll())
              this.$store.dispatch('register', {
                  username: this.username,
                  email: this.Email,
@@ -55,12 +70,16 @@ export default{
                  age: this.age,
                  bio: this.bio 
              }).then(()=>{
-               this.$router.push('/');
+               console.log('he5aaaaaaaa 43al');
              }).catch((error)=>{
-               console.log(error);
+               console.log('la2 yabaaa: '+error);
            })
+        },
+        Vpassword: function(){
+          if(this.$validator.isByteLength(this.password , 8,999)){
+            return true
+          }
         }
-
     }
 }
 
@@ -88,8 +107,8 @@ width: 520px;
   margin-bottom: 50px;
 }
 
-.maincon{
-  margin-top: 60px;
-  margin-bottom: 90px;
+.contaitner{
+  margin-top: auto;
+  margin-bottom: auto;
 }
 </style>

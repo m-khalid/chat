@@ -57,7 +57,7 @@ class ChatController extends Controller
                {
                 return $this->apiResponse(null,404);    
                }
-               $token=$user->token;
+               $token=$users->token;
                $messages=Chat::where([
                    ['sender',$user->id],['reciever',$friend->id]
                    ])->orwhere([['reciever',$user->id],['sender',$friend->id]])->orderBy('created_at','desc')->get();

@@ -35,14 +35,11 @@ export default{
                 useraccount: this.username,
                 password: this.password
             }).then(()=>{
-              //error here: uncaught promise
-                this.$router.push('/').catch(()=>{
-                  console.log("error");
-                })
-                })
-            .catch(()=>{
-               alert('wrong username or password');
+              console.log('he5aaaaaaaa 43al');
+            }).catch((error)=>{
+              console.log('la2 yabaaa: '+error);
             })
+            
         }
     }
 }
