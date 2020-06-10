@@ -127,8 +127,18 @@ export default new Vuex.Store({
                     }).catch(er=>{
                         console.log(er);
                     });
-            }
-    },
+            },
+            viewprofile: async() =>{
+                let token =localStorage.getItem('token');
+                return await axios.post('viewprofile',{token}).then(response =>
+                    {
+                        return response.data.data;
+                      
+                    }).catch(er=>{
+                        console.log(er);
+                    });
+            },
+        },
     modules: {
         cUser: cUser,
         UI: UI

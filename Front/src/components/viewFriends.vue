@@ -6,6 +6,8 @@
               <li v-for="responsedata of responsedata" :key="responsedata.id">
                 {{responsedata.username}}
                 <br>
+                 {{responsedata.bio}}
+                <br>
               
   <a href="#" class="btn btn-primary">message</a>
                 <br><br>

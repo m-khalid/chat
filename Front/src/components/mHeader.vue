@@ -6,6 +6,7 @@
     <li v-if="loggedIn" class="nav-item col-2 mainli"> <router-link to='/'>view messages</router-link></li>
     <li v-if="loggedIn" class="nav-item col-2 mainli"><router-link to='/search'>search</router-link></li>
     <li v-if="loggedIn" class="nav-item col-2 mainli"><router-link to='/viewFriends'>View Frinds</router-link></li>
+    <li v-if="loggedIn" class="nav-item col-2 mainli"><router-link to='/viewprofile'>View profile</router-link></li>
     <li v-if="loggedIn" class="col"></li>
     <li v-if="loggedIn" class="nav-item col-2 mainli">
       <div  class="navbarDropdown">
