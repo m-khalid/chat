@@ -26,13 +26,13 @@ class ChatController extends Controller
             'to_id' => 'required|integer',
             'message' => 'required|min:1',
             'token'=>'required',
-           ]);  
+           ]);
            $user=$this->__construct();
-          
+
            $friend=User::where('id',$request->to_id)->first();
-           if ($validator->fails()||empty($user)||empty($friend)) 
+           if ($validator->fails()||empty($user)||empty($friend))
            {
-            return $this->apiResponse(null,404);    
+            return $this->apiResponse(null,404);
            }
            $token=$user->token;
            $chat = new Chat();
@@ -49,22 +49,22 @@ class ChatController extends Controller
         {
             $validator = Validator::make($request->all(),[
                 'to_id' => 'required|integer',
-                'token'=>'required',                
-               ]);  
+                'token'=>'required',
+               ]);
                $user=$this->__construct();
                $friend=User::where('id',$request->to_id)->first();
-               if ($validator->fails()||empty($user)||empty($friend)) 
+               if ($validator->fails()||empty($user)||empty($friend))
                {
-                return $this->apiResponse(null,404);    
+                return $this->apiResponse(null,404);
                }
-               $token=$users->token;
+               $token=$user->token;
                $messages=Chat::where([
                    ['sender',$user->id],['reciever',$friend->id]
                    ])->orwhere([['reciever',$user->id],['sender',$friend->id]])->orderBy('created_at','desc')->get();
 
                    foreach($messages as $message)
                    {
-              
+
                         if($message->sender==$user->id)
                             {
                                 $message->me=$message->message;
@@ -78,7 +78,7 @@ class ChatController extends Controller
                    if(!empty($data)){
                      return $this->apiResponse($data);
                    }
-                return $this->apiResponse(null,404);    
+                return $this->apiResponse(null,404);
 
         }
 

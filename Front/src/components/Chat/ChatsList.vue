@@ -24,14 +24,15 @@ export default {
        }
     },
     methods: {
-        selectContact(){
+        selectContact(index,contact){
         console.log("select contact function clicked")
+        this.selectedContact = index;
+        this.$emit('selected', contact);
+
         },
         async ListChats(){  
-        console.log("iam in listchat()");
           this.contacts = await this.$store.dispatch('viewfriends',{
           });
-          console.log(this.contacts);
           },
     },components: {
         'ChatItem' : require('./ChatItem.vue').default
@@ -44,7 +45,7 @@ export default {
     border:solid 3px black;
     margin: 5px;
     border-radius:7px;
-    min-height: 100%;
+    min-height: 650px;
     height: 100%;
     
 }

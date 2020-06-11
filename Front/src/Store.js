@@ -8,8 +8,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        token: localStorage.getItem('token')||null
-
+        token: localStorage.getItem('token')||null, 
+        cUser: localStorage.getItem('User')
     },
     mutations: {},
     getters: {
@@ -18,16 +18,22 @@ export default new Vuex.Store({
         },
         getToken(state){
             return state.token;
+        },
+        getUser(state){
+            return state.cUser;
         }
     },
     actions: {
-        login: (context, payload) => {
+        login: (context, payload,) => {
 
                 axios.post('login', payload)
                 .then(response=>{
                   if(response.status==200){
                     const token =response.data.data.token;
                       localStorage.setItem('token', token);
+                        const user = response.data.data;
+                      console.log(user);
+                      localStorage.setItem("cUser", user);
                   }
                 }).catch( er=>{
                     alert('wrong username or password' + er);
@@ -132,12 +138,38 @@ export default new Vuex.Store({
                 let token =localStorage.getItem('token');
                 return await axios.post('viewprofile',{token}).then(response =>
                     {
+                        const user = response.data.data;
+                        localStorage.setItem("cUser",user);
                         return response.data.data;
                       
                     }).catch(er=>{
                         console.log(er);
                     });
             },
+            messages: async(context,payload) =>{
+                let token = localStorage.getItem("token");
+                let to_id = payload.to_id;
+                return await axios.post('messages', {token,to_id })
+            },
+            sendmsg: (context, payload)=>{
+                let token = localStorage.getItem("token");
+                let to_id = payload.to_id;
+                let message = payload.toSend;
+
+                axios.post('sendmsg', {token,to_id, message} )
+                .then(response=>{
+                    console.log('request sent')
+                    if(response.status==200){
+                        console.log('message sent');
+                    }else{
+                        console.log(" message error");
+                    }
+                }).catch(er=>{
+                    console.log(er);
+                    console.log("error sending the message")
+                })
+
+            }
         },
     modules: {
         cUser: cUser,
